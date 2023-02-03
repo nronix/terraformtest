@@ -27,6 +27,7 @@ jobs:
   Dev_deploy:
     if: ${{ github.event_name == 'push' && github.ref_name == 'dev' }} # only run for PRs
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
@@ -38,6 +39,7 @@ jobs:
   Prod_deploy:
     if: ${{ github.event_name == 'push' && github.ref_name == 'main' }} # only run for PRs
     runs-on: ubuntu-latest
+    environment: prod
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
