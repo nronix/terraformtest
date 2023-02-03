@@ -1,5 +1,5 @@
-name: Node.js Package nikhil
-run-name: Deploy ${{ inputs.application }} config to ${{ inputs.environment }} by @${{ github.actor }} 
+name: Terraform configmanagement
+run-name: Deploy by @${{ github.actor }} 
 
 on:
   pull_request: {}
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Plan
-        env:
+      - env:
           AWS_ACCESS_KEY_ID: ${{AWS_ACCESS_KEY_ID}}
           AWS_SECRET_ACCESS_KEY: ${{AWS_SECRET_ACCESS_KEY}}
           AWS_DEFAULT_REGION: ${{REGION}}
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy 
-        env:
+      - env:
           AWS_ACCESS_KEY_ID: ${{AWS_ACCESS_KEY_ID}}
           AWS_SECRET_ACCESS_KEY: ${{AWS_SECRET_ACCESS_KEY}}
           AWS_DEFAULT_REGION: ${{REGION}}
