@@ -1,4 +1,4 @@
-name: Terraform configmanagement
+name: Terraform config management
 run-name: Deploy by @${{ github.actor }} 
 
 on:
@@ -7,9 +7,9 @@ on:
     branches: [main]
 
 env:
-  AWS_ACCESS_KEY_ID: ${{AWS_ACCESS_KEY_ID}}
-  AWS_SECRET_ACCESS_KEY: ${{AWS_SECRET_ACCESS_KEY}}
-  AWS_DEFAULT_REGION: ${{REGION}}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ${{ vars.REGION }}
 
 jobs:
   plan:
