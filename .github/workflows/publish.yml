@@ -4,7 +4,9 @@ run-name: Deploy by @${{ github.actor }}
 on:
   pull_request: {}
   push:
-    branches: [main]
+    branches: 
+    - main
+    - dev
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -22,8 +24,19 @@ jobs:
       - run: terraform workspace select prod
       - run: terraform plan
 
-  deploy:
-    if: ${{ github.event_name == 'push' }} # only run for PRs
+  Dev_deploy:
+    if: ${{ github.event_name == 'push' }} && ${{ GITHUB_REF == 'refs/heads/dev' }} # only run for PRs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+      - run: terraform init
+      - run: terraform workspace select prod
+      - run: terraform plan
+      - run: terraform apply -auto-approve
+  
+  Prod_deploy:
+    if: ${{ github.event_name == 'push' }} && ${{ GITHUB_REF == 'refs/heads/main' }} # only run for PRs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
