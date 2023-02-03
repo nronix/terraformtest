@@ -24,5 +24,6 @@ jobs:
   deploy:
     if: ${{ github.event_name == 'push' }} # only run for PRs
     runs-on: ubuntu-latest
+    needs: plan
     steps:
       - run: terraform apply -auto-approve
