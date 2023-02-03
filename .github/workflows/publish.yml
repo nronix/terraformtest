@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
+      - run: terraform init
+      - run: terraform workspace select prod
       - run: terraform plan
 
   deploy:
@@ -25,4 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
+      - run: terraform init
+      - run: terraform workspace select prod
       - run: terraform apply -auto-approve
