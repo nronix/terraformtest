@@ -25,7 +25,7 @@ jobs:
       - run: terraform plan
 
   Dev_deploy:
-    if: ${{ github.event_name == 'push' }} && ${{ github.ref_name == 'dev' }} # only run for PRs
+    if: ${{ github.event_name == 'push' && github.ref_name == 'dev' }} # only run for PRs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
       - run: terraform apply -auto-approve
   
   Prod_deploy:
-    if: ${{ github.event_name == 'push' }} && ${{ github.ref_name == 'main' }} # only run for PRs
+    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }} # only run for PRs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
