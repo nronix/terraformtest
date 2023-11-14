@@ -1,6 +1,6 @@
 resource "aws_security_group" "demo-sg" {
   name = "sec-grp"
-  description = "Allow HTTP and SSH traffic via Terraform"
+  description = "Allow HTTP and SSH traffic via Terraform1"
 
   ingress {
     from_port   = 80
